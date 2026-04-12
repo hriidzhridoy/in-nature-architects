@@ -34,7 +34,7 @@ function Navbar() {
             src="/Logo.png"
             alt="logo"
             className={`transition-all duration-300 object-contain ${
-              scrolled ? "h-12" : "h-26"
+              scrolled ? "h-12" : "h-20"
             }`}
           />
           <span className="hidden text-lg font-semibold lowercase sm:block">

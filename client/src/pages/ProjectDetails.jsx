@@ -5,7 +5,7 @@ import { showError } from "../utils/swal";
 
 function ProjectDetails() {
   const { id } = useParams();
-
+  const BASE_URL = import.meta.env.VITE_API_URL;
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState("");
@@ -19,7 +19,7 @@ function ProjectDetails() {
         setProject(data);
 
         if (data.images && data.images.length > 0) {
-          setActiveImage(`http://localhost:5000${data.images[0]}`);
+          setActiveImage(`${BASE_URL}${data.images[0]}`);
         }
       } catch (error) {
         console.error(error);

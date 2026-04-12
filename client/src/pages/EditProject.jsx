@@ -86,6 +86,7 @@ function EditProject() {
       </section>
     );
   }
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   return (
     <section className="mx-auto max-w-4xl px-6 py-16 md:px-10">
@@ -160,7 +161,7 @@ function EditProject() {
                   className="overflow-hidden border border-neutral-200"
                 >
                   <img
-                    src={`http://localhost:5000${img}`}
+                    src={`${BASE_URL}${img}`}
                     alt={`Project ${index + 1}`}
                     className="h-48 w-full object-cover"
                   />

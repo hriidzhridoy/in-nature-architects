@@ -58,6 +58,8 @@ function ManageProjects() {
     }
   };
 
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 md:px-10">
       <div className="flex flex-col gap-4 border-b border-neutral-200 pb-6 md:flex-row md:items-center md:justify-between">
@@ -111,7 +113,7 @@ function ManageProjects() {
                   <td className="border-b border-neutral-200 px-4 py-4">
                     {project.images && project.images.length > 0 ? (
                       <img
-                        src={`http://localhost:5000${project.images[0]}`}
+                        src={`${BASE_URL}${project.images[0]}`}
                         alt={project.title}
                         className="h-20 w-24 object-cover"
                       />
