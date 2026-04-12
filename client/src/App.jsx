@@ -7,6 +7,9 @@ import Contact from "./pages/Contact";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AddProject from "./pages/AddProject";
+import ManageProjects from "./pages/ManageProjects";
+import ProtectedRoute from "./components/ProtectedRoute";
+import EditProject from "./pages/EditProject";
 
 function App() {
   return (
@@ -19,8 +22,38 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/add-project" element={<AddProject />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/add-project"
+            element={
+              <ProtectedRoute>
+                <AddProject />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/manage-projects"
+            element={
+              <ProtectedRoute>
+                <ManageProjects />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/edit-project/:id"
+            element={
+              <ProtectedRoute>
+                <EditProject />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>

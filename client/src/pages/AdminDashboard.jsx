@@ -26,12 +26,14 @@ function AdminDashboard() {
           </p>
         </Link>
 
-        <div className="border border-neutral-200 p-6">
-          <h2 className="text-xl font-medium">Manage Projects</h2>
-          <p className="mt-2 text-sm text-neutral-600">
-            Later you can add edit and delete pages here.
-          </p>
-        </div>
+        <Link to="/admin/manage-projects">
+          <div className="border border-neutral-200 p-6">
+            <h2 className="text-xl font-medium">Manage Projects</h2>
+            <p className="mt-2 text-sm text-neutral-600">
+              Later you can add edit and delete pages here.
+            </p>
+          </div>
+        </Link>
 
         <button
           onClick={logoutHandler}

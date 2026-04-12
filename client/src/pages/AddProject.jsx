@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../services/api";
+import { showError, showSuccess } from "../utils/swal";
 
 function AddProject() {
   const [title, setTitle] = useState("");
@@ -29,7 +30,7 @@ function AddProject() {
         },
       });
 
-      alert("Project uploaded successfully");
+      showSuccess("Project uploaded successfully");
 
       setTitle("");
       setCategory("");
@@ -37,7 +38,7 @@ function AddProject() {
       setImages([]);
     } catch (error) {
       console.error(error);
-      alert("Project upload failed");
+      showError("Upload failed");
     }
   };
 

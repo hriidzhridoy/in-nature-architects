@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
+import { showError, showSuccess } from "../utils/swal";
 
 function AdminLogin() {
   const [form, setForm] = useState({
@@ -23,10 +24,11 @@ function AdminLogin() {
     try {
       const { data } = await API.post("/admin/login", form);
       localStorage.setItem("adminToken", data.token);
+      showSuccess("Login successful");
       navigate("/admin/dashboard");
     } catch (error) {
       console.error(error);
-      alert("Invalid login credentials");
+      showError("Invalid credentials");
     }
   };
 
