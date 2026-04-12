@@ -10,6 +10,7 @@ import AddProject from "./pages/AddProject";
 import ManageProjects from "./pages/ManageProjects";
 import ProtectedRoute from "./components/ProtectedRoute";
 import EditProject from "./pages/EditProject";
+import ProjectDetails from "./pages/ProjectDetails";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:id" element={<ProjectDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin/login" element={<AdminLogin />} />

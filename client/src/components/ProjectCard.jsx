@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom";
+
 function ProjectCard({ project }) {
   return (
-    <div className="group border border-neutral-200 bg-white transition hover:border-black">
+    <Link
+      to={`/projects/${project._id}`}
+      className="group block border border-neutral-200 bg-white transition hover:border-black"
+    >
       <div className="overflow-hidden">
         {project.images && project.images.length > 0 ? (
           <img
@@ -23,8 +28,12 @@ function ProjectCard({ project }) {
         <p className="mt-3 line-clamp-3 text-sm leading-6 text-neutral-600">
           {project.description}
         </p>
+
+        <div className="mt-5 text-sm uppercase tracking-wider text-black">
+          View Details
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
