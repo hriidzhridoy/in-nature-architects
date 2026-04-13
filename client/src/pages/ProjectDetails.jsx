@@ -124,9 +124,10 @@ function ProjectDetails() {
               Project Overview
             </h2>
 
-            <p className="mt-4 text-base leading-8 text-neutral-600">
-              {project.description}
-            </p>
+            <div
+              className="mt-4 text-base leading-8 text-neutral-600"
+              dangerouslySetInnerHTML={{ __html: project.description }}
+            />
           </div>
 
           <div className="mt-10 border-t border-neutral-200 pt-8">
@@ -139,10 +140,10 @@ function ProjectDetails() {
                 <span className="font-medium text-black">Category:</span>{" "}
                 {project.category}
               </p>
-              <p>
+              {/* <p>
                 <span className="font-medium text-black">Project ID:</span>{" "}
                 {project._id}
-              </p>
+              </p> */}
             </div>
           </div>
 

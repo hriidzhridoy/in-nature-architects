@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import RichTextEditor from "../components/RichTextEditor";
 import { MEDIA_URL } from "../config/env";
 import API, { withMultipartAuth } from "../services/api";
 import { showSuccess, showError, showLoading, closeAlert } from "../utils/swal";
@@ -17,6 +18,9 @@ function EditProject() {
 
   const [existingImages, setExistingImages] = useState([]);
   const [newImages, setNewImages] = useState([]);
+
+  const isDescriptionEmpty = (content) =>
+    !content.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -45,6 +49,11 @@ function EditProject() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isDescriptionEmpty(description)) {
+      showError("Description is required");
+      return;
+    }
 
     try {
       setSubmitting(true);
@@ -130,13 +139,10 @@ function EditProject() {
           <label className="mb-2 block text-sm uppercase tracking-wider text-neutral-600">
             Description
           </label>
-          <textarea
-            rows="6"
+          <RichTextEditor
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={setDescription}
             placeholder="Enter project description"
-            className="w-full border border-neutral-300 px-4 py-3 outline-none transition focus:border-black"
-            required
           />
         </div>
 

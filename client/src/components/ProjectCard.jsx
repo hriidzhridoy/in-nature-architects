@@ -26,9 +26,10 @@ function ProjectCard({ project }) {
           {project.category}
         </p>
         <h3 className="text-2xl font-light text-black">{project.title}</h3>
-        <p className="mt-3 line-clamp-3 text-sm leading-6 text-neutral-600">
-          {project.description}
-        </p>
+        <div
+          className="mt-3 line-clamp-3 text-sm leading-6 text-neutral-600"
+          dangerouslySetInnerHTML={{ __html: project.description }}
+        />
 
         <div className="mt-5 text-sm uppercase tracking-wider text-black">
           View Details

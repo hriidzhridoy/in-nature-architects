@@ -125,9 +125,10 @@ function ManageProjects() {
                   </td>
 
                   <td className="border-b border-neutral-200 px-4 py-4 text-sm text-neutral-600">
-                    <p className="max-w-md line-clamp-3">
-                      {project.description}
-                    </p>
+                    <div
+                      className="max-w-md line-clamp-3"
+                      dangerouslySetInnerHTML={{ __html: project.description }}
+                    />
                   </td>
 
                   <td className="border-b border-neutral-200 px-4 py-4">

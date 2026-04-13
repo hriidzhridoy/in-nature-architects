@@ -1,4 +1,5 @@
 import { useState } from "react";
+import RichTextEditor from "../components/RichTextEditor";
 import API, { withMultipartAuth } from "../services/api";
 import { showError, showSuccess } from "../utils/swal";
 
@@ -8,8 +9,16 @@ function AddProject() {
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
 
+  const isDescriptionEmpty = (content) =>
+    !content.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isDescriptionEmpty(description)) {
+      showError("Description is required");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("title", title);
@@ -78,13 +87,10 @@ function AddProject() {
           <label className="mb-2 block text-sm uppercase tracking-wider text-neutral-600">
             Description
           </label>
-          <textarea
-            rows="6"
+          <RichTextEditor
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full border border-neutral-300 px-4 py-3 outline-none transition focus:border-black"
+            onChange={setDescription}
             placeholder="Enter project description"
-            required
           />
         </div>
 
