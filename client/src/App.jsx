@@ -13,9 +13,14 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import EditProject from "./pages/EditProject";
 import ProjectDetails from "./pages/ProjectDetails";
 import Lenis from "@studio-freight/lenis";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme || "light";
+  });
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -34,10 +39,22 @@ function App() {
       lenis.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) =>
+      currentTheme === "light" ? "dark" : "light",
+    );
+  };
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-white text-neutral-900">
-        <Navbar />
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
         <PageTransition>
           <Routes>
             <Route path="/" element={<Home />} />

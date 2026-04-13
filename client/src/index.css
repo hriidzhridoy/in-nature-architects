@@ -19,11 +19,111 @@ textarea {
   font-family: inherit;
 }
 
+html,
+body {
+  background: #ffffff;
+  color: #171717;
+  transition:
+    background-color 280ms ease,
+    color 280ms ease;
+}
+
 .jodit-container,
 .jodit-wysiwyg,
 .jodit-status-bar,
 .jodit-toolbar__box {
   font-family: "Manrope", sans-serif !important;
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  background: #0d1117;
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .bg-white,
+html[data-theme="dark"] .bg-white\/90 {
+  background-color: #111827 !important;
+}
+
+html[data-theme="dark"] .bg-neutral-50 {
+  background-color: #111827 !important;
+}
+
+html[data-theme="dark"] .bg-neutral-100 {
+  background-color: #1f2937 !important;
+}
+
+html[data-theme="dark"] .text-black,
+html[data-theme="dark"] .text-neutral-900 {
+  color: #f9fafb !important;
+}
+
+html[data-theme="dark"] .text-white {
+  color: #111827 !important;
+}
+
+html[data-theme="dark"] .text-neutral-700 {
+  color: #d1d5db !important;
+}
+
+html[data-theme="dark"] .text-neutral-600,
+html[data-theme="dark"] .text-neutral-500 {
+  color: #9ca3af !important;
+}
+
+html[data-theme="dark"] .text-neutral-400 {
+  color: #6b7280 !important;
+}
+
+html[data-theme="dark"] .border-black,
+html[data-theme="dark"] .border-neutral-200,
+html[data-theme="dark"] .border-neutral-300 {
+  border-color: #374151 !important;
+}
+
+html[data-theme="dark"] .bg-black {
+  background-color: #f9fafb !important;
+}
+
+html[data-theme="dark"] .hover\:bg-black:hover {
+  background-color: #f9fafb !important;
+}
+
+html[data-theme="dark"] .hover\:bg-white:hover {
+  background-color: #111827 !important;
+}
+
+html[data-theme="dark"] .hover\:text-black:hover {
+  color: #f9fafb !important;
+}
+
+html[data-theme="dark"] .hover\:text-white:hover {
+  color: #111827 !important;
+}
+
+html[data-theme="dark"] .hover\:border-black:hover {
+  border-color: #f9fafb !important;
+}
+
+html[data-theme="dark"] .shadow-sm {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+html[data-theme="dark"] .jodit-container:not(.jodit_inline),
+html[data-theme="dark"] .jodit-workplace,
+html[data-theme="dark"] .jodit-wysiwyg,
+html[data-theme="dark"] .jodit-status-bar,
+html[data-theme="dark"] .jodit-toolbar__box {
+  background: #111827 !important;
+  color: #f9fafb !important;
+  border-color: #374151 !important;
+}
+
+html[data-theme="dark"] .jodit-icon,
+html[data-theme="dark"] .jodit-toolbar-button__button,
+html[data-theme="dark"] .jodit-status-bar__item {
+  color: #f9fafb !important;
 }
 
 .page-transition {
