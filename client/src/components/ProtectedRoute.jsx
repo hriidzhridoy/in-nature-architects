@@ -1,10 +1,11 @@
 import { Navigate } from "react-router-dom";
+import { getValidAdminToken } from "../utils/auth";
 
 function ProtectedRoute({ children }) {
-  const token = localStorage.getItem("adminToken");
+  const token = getValidAdminToken();
 
   if (!token) {
-    return <Navigate to="/admin/login" />;
+    return <Navigate to="/admin/login" replace />;
   }
 
   return children;

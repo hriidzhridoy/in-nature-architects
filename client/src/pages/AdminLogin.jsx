@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import API from "../services/api";
+import { getValidAdminToken, setAdminToken } from "../utils/auth";
 import { showError, showSuccess } from "../utils/swal";
 
 function AdminLogin() {
@@ -10,6 +11,11 @@ function AdminLogin() {
   });
 
   const navigate = useNavigate();
+  const token = getValidAdminToken();
+
+  if (token) {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
 
   const handleChange = (e) => {
     setForm((prev) => ({
@@ -23,7 +29,7 @@ function AdminLogin() {
 
     try {
       const { data } = await API.post("/admin/login", form);
-      localStorage.setItem("adminToken", data.token);
+      setAdminToken(data.token);
       showSuccess("Login successful");
       navigate("/admin/dashboard");
     } catch (error) {

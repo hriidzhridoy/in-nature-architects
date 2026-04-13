@@ -1,11 +1,10 @@
 import axios from "axios";
 import { API_URL } from "../config/env";
+import { clearAdminToken, getValidAdminToken } from "../utils/auth";
 
 const API = axios.create({
   baseURL: API_URL,
 });
-
-const getAdminToken = () => localStorage.getItem("adminToken");
 
 const mergeConfig = (config = {}, headers = {}) => ({
   ...config,
@@ -16,7 +15,7 @@ const mergeConfig = (config = {}, headers = {}) => ({
 });
 
 export const withAuth = (config = {}) => {
-  const token = getAdminToken();
+  const token = getValidAdminToken();
 
   if (!token) {
     return config;
@@ -33,5 +32,16 @@ export const withMultipartAuth = (config = {}) =>
       "Content-Type": "multipart/form-data",
     }),
   );
+
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      clearAdminToken();
+    }
+
+    return Promise.reject(error);
+  },
+);
 
 export default API;
