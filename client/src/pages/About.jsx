@@ -133,7 +133,7 @@ function About() {
               <img
                 src="/shuvrojit.png"
                 alt="Portrait of Shuvrojit Roy"
-                className="h-[420px] w-full object-cover object-top"
+                className="h-[420px] w-full object-cover object-top grayscale"
               />
             </div>
           </div>

@@ -1,4 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
+import {
+  COMPANY_EMAIL,
+  COMPANY_LOCATION,
+  COMPANY_PHONE,
+  LINKEDIN_URL,
+} from "../config/site";
 
 function Footer({ theme }) {
   const logoSrc = theme === "dark" ? "/Logo-dark.png" : "/Logo-light.png";
@@ -55,21 +61,21 @@ function Footer({ theme }) {
                 Contact
               </p>
               <div className="mt-5 space-y-3 text-sm leading-7 text-neutral-600">
-                <p>Khulna, Bangladesh</p>
+                <p>{COMPANY_LOCATION}</p>
                 <a
-                  href="tel:+8801611725032"
+                  href={`tel:${COMPANY_PHONE.replace(/-/g, "")}`}
                   className="block transition hover:text-black"
                 >
-                  +880-1611725032
+                  {COMPANY_PHONE}
                 </a>
                 <a
-                  href="mailto:shuvrojitroy32@gmail.com"
+                  href={`mailto:${COMPANY_EMAIL}`}
                   className="block transition hover:text-black"
                 >
-                  shuvrojitroy32@gmail.com
+                  {COMPANY_EMAIL}
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/shuvrojit-roy-aa815220b/"
+                  href={LINKEDIN_URL}
                   target="_blank"
                   rel="noreferrer"
                   className="block transition hover:text-black"
