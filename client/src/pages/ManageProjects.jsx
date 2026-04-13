@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import API from "../services/api";
+import { MEDIA_URL } from "../config/env";
+import API, { withAuth } from "../services/api";
 import { confirmAction, showError, showSuccess } from "../utils/swal";
 
 function ManageProjects() {
@@ -36,14 +37,7 @@ function ManageProjects() {
 
     try {
       setDeletingId(projectId);
-
-      const token = localStorage.getItem("adminToken");
-
-      await API.delete(`/projects/${projectId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await API.delete(`/projects/${projectId}`, withAuth());
 
       setProjects((prev) =>
         prev.filter((project) => project._id !== projectId),
@@ -57,8 +51,6 @@ function ManageProjects() {
       setDeletingId(null);
     }
   };
-
-  const BASE_URL = import.meta.env.VITE_API_URL;
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 md:px-10">
@@ -113,7 +105,7 @@ function ManageProjects() {
                   <td className="border-b border-neutral-200 px-4 py-4">
                     {project.images && project.images.length > 0 ? (
                       <img
-                        src={`${BASE_URL}${project.images[0]}`}
+                        src={`${MEDIA_URL}${project.images[0]}`}
                         alt={project.title}
                         className="h-20 w-24 object-cover"
                       />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import API from "../services/api";
+import { MEDIA_URL } from "../config/env";
+import API, { withMultipartAuth } from "../services/api";
 import { showSuccess, showError, showLoading, closeAlert } from "../utils/swal";
 
 function EditProject() {
@@ -49,8 +50,6 @@ function EditProject() {
       setSubmitting(true);
       showLoading("Updating project...");
 
-      const token = localStorage.getItem("adminToken");
-
       const formData = new FormData();
       formData.append("title", title);
       formData.append("category", category);
@@ -60,12 +59,7 @@ function EditProject() {
         formData.append("images", image);
       });
 
-      await API.put(`/projects/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await API.put(`/projects/${id}`, formData, withMultipartAuth());
 
       closeAlert();
       await showSuccess("Project updated successfully");
@@ -86,8 +80,6 @@ function EditProject() {
       </section>
     );
   }
-  const BASE_URL = import.meta.env.VITE_API_URL;
-
   return (
     <section className="mx-auto max-w-4xl px-6 py-16 md:px-10">
       <div className="border-b border-neutral-200 pb-6">
@@ -161,7 +153,7 @@ function EditProject() {
                   className="overflow-hidden border border-neutral-200"
                 >
                   <img
-                    src={`${BASE_URL}${img}`}
+                    src={`${MEDIA_URL}${img}`}
                     alt={`Project ${index + 1}`}
                     className="h-48 w-full object-cover"
                   />

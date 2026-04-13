@@ -1,5 +1,5 @@
 import { useState } from "react";
-import API from "../services/api";
+import API, { withMultipartAuth } from "../services/api";
 import { showError, showSuccess } from "../utils/swal";
 
 function AddProject() {
@@ -11,8 +11,6 @@ function AddProject() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("adminToken");
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("category", category);
@@ -23,12 +21,7 @@ function AddProject() {
     }
 
     try {
-      await API.post("/projects", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await API.post("/projects", formData, withMultipartAuth());
 
       showSuccess("Project uploaded successfully");
 

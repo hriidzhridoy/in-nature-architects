@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { MEDIA_URL } from "../config/env";
 import API from "../services/api";
 import { showError } from "../utils/swal";
 
 function ProjectDetails() {
   const { id } = useParams();
-  const BASE_URL = import.meta.env.VITE_API_URL;
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState("");
@@ -19,7 +19,7 @@ function ProjectDetails() {
         setProject(data);
 
         if (data.images && data.images.length > 0) {
-          setActiveImage(`${BASE_URL}${data.images[0]}`);
+          setActiveImage(`${MEDIA_URL}${data.images[0]}`);
         }
       } catch (error) {
         console.error(error);
@@ -84,7 +84,7 @@ function ProjectDetails() {
           {project.images && project.images.length > 1 && (
             <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
               {project.images.map((img, index) => {
-                const imageUrl = `http://localhost:5000${img}`;
+                const imageUrl = `${MEDIA_URL}${img}`;
                 const isActive = activeImage === imageUrl;
 
                 return (

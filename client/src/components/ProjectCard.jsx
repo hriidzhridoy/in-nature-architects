@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
+import { MEDIA_URL } from "../config/env";
 
 function ProjectCard({ project }) {
-  const BASE_URL = import.meta.env.VITE_API_URL;
   return (
     <Link
       to={`/projects/${project._id}`}
@@ -10,7 +10,7 @@ function ProjectCard({ project }) {
       <div className="overflow-hidden">
         {project.images && project.images.length > 0 ? (
           <img
-            src={`${BASE_URL}${project.images[0]}`}
+            src={`${MEDIA_URL}${project.images[0]}`}
             alt={project.title}
             className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
           />
