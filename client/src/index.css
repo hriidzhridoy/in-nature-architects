@@ -1,2 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import "tailwindcss";
 
+:root {
+  font-family: "Manrope", sans-serif;
+}
+
+html,
+body,
+#root {
+  font-family: "Manrope", sans-serif;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.jodit-container,
+.jodit-wysiwyg,
+.jodit-status-bar,
+.jodit-toolbar__box {
+  font-family: "Manrope", sans-serif !important;
+}
+
+.page-transition {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  will-change: opacity, transform, filter;
+}
+
+.page-transition-enter {
+  animation: page-enter 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.985);
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition,
+  .page-transition-enter {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+}
