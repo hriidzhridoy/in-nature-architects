@@ -15,6 +15,7 @@ import EditProject from "./pages/EditProject";
 import ProjectDetails from "./pages/ProjectDetails";
 import Lenis from "@studio-freight/lenis";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -47,60 +48,68 @@ function App() {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((currentTheme) =>
-      currentTheme === "light" ? "dark" : "light",
-    );
+    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-white text-neutral-900">
-        <Navbar theme={theme} toggleTheme={toggleTheme} />
-        <PageTransition>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:id" element={<ProjectDetails />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route
-              path="/admin/dashboard"
-              element={
-                <ProtectedRoute>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/add-project"
-              element={
-                <ProtectedRoute>
-                  <AddProject />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/manage-projects"
-              element={
-                <ProtectedRoute>
-                  <ManageProjects />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/edit-project/:id"
-              element={
-                <ProtectedRoute>
-                  <EditProject />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </PageTransition>
-        <Footer theme={theme} />
-      </div>
+      <AppLayout theme={theme} toggleTheme={toggleTheme} />
     </BrowserRouter>
+  );
+}
+
+function AppLayout({ theme, toggleTheme }) {
+  const location = useLocation();
+  const isAdminPage = location.pathname.startsWith("/admin");
+  const isHomePage = location.pathname === "/";
+
+  return (
+    <div className="min-h-screen bg-white text-neutral-900">
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <PageTransition>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:id" element={<ProjectDetails />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/add-project"
+            element={
+              <ProtectedRoute>
+                <AddProject />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/manage-projects"
+            element={
+              <ProtectedRoute>
+                <ManageProjects />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/edit-project/:id"
+            element={
+              <ProtectedRoute>
+                <EditProject />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </PageTransition>
+      {!isAdminPage && !isHomePage && <Footer theme={theme} />}
+    </div>
   );
 }
 
