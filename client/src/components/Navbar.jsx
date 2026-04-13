@@ -37,8 +37,8 @@ function Navbar() {
               scrolled ? "h-12" : "h-20"
             }`}
           />
-          <span className="hidden text-lg font-semibold lowercase sm:block">
-            innaturesarchitects
+          <span className=" text-lg font-semibold lowercase sm:block">
+            in nature architects
           </span>
         </Link>
 
