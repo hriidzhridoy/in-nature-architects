@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
@@ -97,6 +98,7 @@ function App() {
             />
           </Routes>
         </PageTransition>
+        <Footer theme={theme} />
       </div>
     </BrowserRouter>
   );

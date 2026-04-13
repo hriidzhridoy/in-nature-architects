@@ -38,7 +38,7 @@ function Navbar({ theme, toggleTheme }) {
               scrolled ? "h-12" : "h-20"
             }`}
           />
-          <span className=" text-lg font-semibold lowercase sm:block">
+          <span className="hidden text-lg font-semibold lowercase sm:block">
             in nature architects
           </span>
         </Link>
@@ -69,7 +69,9 @@ function Navbar({ theme, toggleTheme }) {
             type="button"
             onClick={toggleTheme}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition hover:border-black hover:text-black"
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            aria-label={
+              theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+            }
             title={theme === "dark" ? "Light mode" : "Dark mode"}
           >
             {theme === "dark" ? (
@@ -105,7 +107,9 @@ function Navbar({ theme, toggleTheme }) {
             type="button"
             onClick={toggleTheme}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition hover:border-black hover:text-black"
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            aria-label={
+              theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+            }
             title={theme === "dark" ? "Light mode" : "Dark mode"}
           >
             {theme === "dark" ? (
